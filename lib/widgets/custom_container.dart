@@ -30,7 +30,7 @@ class CustomContainer extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Gorda'),
+                    Text('CJ'),
                     Text('12/5/20'),
                   ],
                 ),
