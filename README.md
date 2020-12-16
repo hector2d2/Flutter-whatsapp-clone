@@ -10,6 +10,8 @@ A new Flutter project.
 
 ### Design
 
+- Chats Page
+<img src="images/page_chat.png" width = "250" height = "450">
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
