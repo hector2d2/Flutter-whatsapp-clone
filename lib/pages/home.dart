@@ -32,12 +32,42 @@ Widget _myFloatingActionButton() {
   return GetBuilder<MyTabController>(
     builder: (_) {
       final indexPage = _.indexPage;
-      return FloatingActionButton(
-        backgroundColor: Color(0xFF00CC3F),
-        onPressed: () {},
-        child: _getIcon(indexPage),
-      );
+      switch (indexPage) {
+        case 0:
+          return Container();
+        case 2:
+        case 3:
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _myDefaultFloatingButtonSmall(indexPage),
+              SizedBox(
+                height: 10,
+              ),
+              _myDefaultFloatingButton(indexPage),
+            ],
+          );
+        default:
+          return _myDefaultFloatingButton(indexPage);
+      }
     },
+  );
+}
+
+Widget _myDefaultFloatingButtonSmall(int indexPage) {
+  return FloatingActionButton(
+    onPressed: () {},
+    backgroundColor: Color(0xFFEDF5F7),
+    mini: true,
+    child: _getIcon(indexPage + 2),
+  );
+}
+
+Widget _myDefaultFloatingButton(int indexPage) {
+  return FloatingActionButton(
+    backgroundColor: Color(0xFF00CC3F),
+    onPressed: () {},
+    child: _getIcon(indexPage),
   );
 }
 
@@ -48,6 +78,16 @@ Widget _getIcon(int index) {
       break;
     case 3:
       return Icon(Icons.add_ic_call_rounded);
+    case 4:
+      return Icon(
+        Icons.mode_edit,
+        color: Color(0xFF516A76),
+      );
+    case 5:
+      return Icon(
+        Icons.videocam,
+        color: Color(0xFF516A76),
+      );
     default:
       return Icon(Icons.message_rounded);
   }
