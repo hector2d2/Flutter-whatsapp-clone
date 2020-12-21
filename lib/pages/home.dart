@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             'hola mundo',
           ),
           _bodyChat(size),
-          _bodyStatus(),
+          _bodyStatus(size),
           _bodyCalls(),
         ],
       ),
@@ -93,8 +93,59 @@ Widget _getIcon(int index) {
   }
 }
 
-Widget _bodyStatus() {
-  return Text('Status body');
+Widget _bodyStatus(Size size) {
+  double width = size.width;
+  double height = size.height;
+  return Scrollbar(
+    child: ListView(
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      children: [
+        Padding(padding: EdgeInsets.only(top: 8.0)),
+        _statusContainerMyProfile(),
+        Divider(
+          indent: width * .2,
+        ),
+        Container(
+          height: height * .05,
+          color: Color(0xFFF0EFF5),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text('Recent updates'),
+          ),
+        ),
+        _statusContainerProfile(),
+        Divider(
+          indent: width * .2,
+        ),
+        _statusContainerProfile(),
+        Divider(
+          indent: width * .2,
+        ),
+        SizedBox(
+          height: height * .10,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _statusContainerMyProfile() {
+  return CustomContainer(
+    isShowDate: false,
+    isShowIconMore: true,
+    isMyStatus: true,
+    profile: 'My status',
+    bodyText: 'Tap to add status update',
+  );
+}
+
+Widget _statusContainerProfile() {
+  return CustomContainer(
+    isShowDate: false,
+    profile: 'Calixto',
+    bodyText: 'Today, 19:30',
+  );
 }
 
 Widget _bodyCalls() {
@@ -110,43 +161,50 @@ Widget _bodyChat(Size size) {
       physics: BouncingScrollPhysics(),
       children: [
         Padding(padding: EdgeInsets.only(top: 8.0)),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         Divider(
           indent: width * .2,
         ),
         Divider(
           indent: width * .2,
         ),
-        CustomContainer(),
+        _chatsContainerProfile(),
         SizedBox(
           height: height * .10,
         ),
       ],
     ),
+  );
+}
+
+Widget _chatsContainerProfile() {
+  return CustomContainer(
+    profile: 'Prro0 1',
+    bodyText: 'Photo',
   );
 }
 
