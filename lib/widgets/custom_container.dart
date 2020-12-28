@@ -58,7 +58,7 @@ class CustomContainer extends StatelessWidget {
             ),
           ),
           Container(
-            width: width * .759,
+            width: width * .75,
             padding: EdgeInsets.only(right: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

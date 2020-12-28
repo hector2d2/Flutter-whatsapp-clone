@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     final MyTabController myControllerTab = Get.put(MyTabController());
 
     return Scaffold(
-      appBar: _customAppBar(size, context, myControllerTab),
+      appBar: _customAppBar(context, myControllerTab),
       body: TabBarView(
         physics: BouncingScrollPhysics(),
         controller: myControllerTab.controller,
@@ -208,9 +208,7 @@ Widget _chatsContainerProfile() {
   );
 }
 
-Widget _customAppBar(
-    Size size, BuildContext context, MyTabController myControllerTab) {
-  double width = size.width;
+Widget _customAppBar(BuildContext context, MyTabController myControllerTab) {
   return AppBar(
     title: Text('WhatsApp'),
     backgroundColor: Color(0xFF075E55),
@@ -264,7 +262,6 @@ Widget _customAppBar(
       ),
     ],
     bottom: TabBar(
-      isScrollable: true,
       physics: BouncingScrollPhysics(),
       indicatorColor: Color(0xFFFFFFFF),
       controller: myControllerTab.controller,
@@ -272,19 +269,16 @@ Widget _customAppBar(
         Tab(
           icon: Icon(Icons.camera_alt),
         ),
-        _customTab('CHATS', width),
-        _customTab('STATUS', width),
-        _customTab('CALLS', width),
+        Tab(
+          text: 'CHATS',
+        ),
+        Tab(
+          text: 'STATUS',
+        ),
+        Tab(
+          text: 'CALLS',
+        ),
       ],
-    ),
-  );
-}
-
-Widget _customTab(String text, double width) {
-  return Container(
-    width: width * .203,
-    child: Tab(
-      text: text,
     ),
   );
 }
