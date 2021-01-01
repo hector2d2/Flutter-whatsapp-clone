@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
 import 'package:get/get.dart';
 
+import 'package:Whatsapp_clone/pages/chat.dart';
+import 'package:Whatsapp_clone/pages/whatsapp.dart';
 import 'package:Whatsapp_clone/pages/sign_up.dart';
-import 'package:Whatsapp_clone/pages/home.dart';
 import 'package:Whatsapp_clone/pages/login.dart';
 import 'package:Whatsapp_clone/pages/sign_in.dart';
 
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Whatsapp App',
-      home: LoginPage(),
+      home: ChatPage(),
       getPages: [
-         GetPage(name: '/',page: () => HomePage()),
+         GetPage(name: '/',page: () => WhatsappPage()),
          GetPage(name: '/login',page: () => LoginPage()),
+         GetPage(name: '/chat',page: () => ChatPage()),
          GetPage(name: '/signin',page: () => SignInPage(), transition: Transition.zoom),
          GetPage(name: '/signup',page: () => SignUpPage(), transition: Transition.zoom),
       ],
