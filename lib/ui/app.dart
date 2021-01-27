@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+      title: 'Chat App',
       initialRoute: 'chat',
       getPages: routes,
     );
