@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomBackground extends StatelessWidget {
-  final double height;
+class Background extends StatelessWidget {
+  final double heightContainerUp;
   final Color colorPrimary;
   final Color colorSecond;
 
-  CustomBackground({
-    @required this.height,
+  Background({
+    @required this.heightContainerUp,
     this.colorPrimary = Colors.blueAccent,
     this.colorSecond = Colors.white10,
   });
@@ -15,7 +15,7 @@ class CustomBackground extends StatelessWidget {
     return Stack(
       children: [
         _ContainerDown(this.colorSecond),
-        _ContainerUp(this.height, this.colorPrimary),
+        _ContainerUp(this.heightContainerUp, this.colorPrimary),
       ],
     );
   }
@@ -56,14 +56,4 @@ class _ContainerUp extends StatelessWidget {
   }
 }
 
-class MyBackground extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return CustomBackground(
-      height: height * .5,
-      colorPrimary: Color(0xFF7972E6),
-      colorSecond: Color(0xFFDFE0E3),
-    );
-  }
-}
+

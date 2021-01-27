@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 
+class CustomButtonLogin extends StatelessWidget {
+  final Function onPress;
+
+  CustomButtonLogin({@required this.onPress});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(
+      color: Color(0xFF7972E6),
+      borderColor: Color(0xFF7972E6),
+      title: 'Sign In',
+      onPress: this.onPress,
+    );
+  }
+}
+
 class CustomButton extends StatelessWidget {
   final Color color;
   final Color borderColor;

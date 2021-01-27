@@ -1,13 +1,17 @@
+import 'package:Whatsapp_clone/ui/pages/chat/chat_model.dart';
+import 'package:Whatsapp_clone/ui/pages/chat/widgets/message.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:Whatsapp_clone/widgets/more_settings.dart';
-import 'package:Whatsapp_clone/widgets/my_appbar.dart';
+import 'package:Whatsapp_clone/ui/widgets/more_settings.dart';
+import 'package:Whatsapp_clone/ui/widgets/my_appbar.dart';
+import 'package:get/get.dart';
 
 class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // final chatModel = Get.put(ChatModel());
     return Scaffold(
       appBar: MyAppBar(
         titleSpacing: -9,
@@ -16,9 +20,103 @@ class ChatPage extends StatelessWidget {
         leading: _appBarLeading(),
         actions: _appBarIcons(context),
       ),
-      body: Container(
-        child: Text('hola mundo'),
+      body: Column(
+        children: [
+          Flexible(
+            flex: 1,
+            child: _listView(),
+          ),
+          _inputChat(),
+        ],
       ),
+    );
+  }
+
+  Flexible _inputChat() {
+    return Flexible(
+      flex: 0,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          _textFieldChat(),
+          _buttonChat(),
+        ],
+      ),
+    );
+  }
+
+  Widget _textFieldChat() {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 3, vertical: 4),
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: Icon(Icons.emoji_emotions),
+              onPressed: () {},
+            ),
+            Flexible(
+              child: GetBuilder<ChatModel>(
+                builder: (_) => TextField(
+                  controller: _.textController,
+                  maxLines: 6,
+                  minLines: 1,
+                  decoration: InputDecoration(border: InputBorder.none),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.cached),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonChat() {
+    return Container(
+      height: 50,
+      margin: EdgeInsets.symmetric(horizontal: 3, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(60),
+      ),
+      child: IconButton(
+        onPressed: () {
+          final chatModel = Get.put(ChatModel());
+          final String _text = chatModel.textController.text;
+          final String _uiid = '0';
+          final Message message = Message(text: _text, uiid: _uiid );
+          chatModel.addMessage(message);
+        },
+        icon: Icon(Icons.mic_rounded),
+      ),
+    );
+  }
+
+  Widget _listView() {
+    return GetBuilder<ChatModel>(
+      init: ChatModel(),
+      builder: (_) {
+        List<Message> _messages = _.messages;
+        return ListView.builder(
+          physics: BouncingScrollPhysics(),
+          reverse: true,
+          itemCount: _messages.length,
+          itemBuilder: (__, i) =>
+          ChatMessage(
+            text: _messages[i].text,
+            uid: _messages[i].uiid,
+          ),
+        );
+      },
     );
   }
 

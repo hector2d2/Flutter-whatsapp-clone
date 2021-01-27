@@ -13,7 +13,7 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin{
     double valueControllerPrevious = 0;
     controller.addListener(() {
       if (valueControllerPrevious != controller.animation.value) {
-        print(controller.animation.value);
+        // print(controller.animation.value);
         indexPage = controller.index;
         update();
       }
